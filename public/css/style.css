@@ -1,7 +1,37 @@
-h1{
-    color: red;
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.completed{
-    color: gray;
+
+h1 {
+    color: rgb(136, 110, 88);
+}
+
+.scroll {
+    width: 50vw;
+    background: url('../images/scroll.png');
+    background-size: 50vw;
+    background-repeat: no-repeat;
+
+}
+
+.scrollBottom {
+    margin-top: 90px;
+    width: 50vw;
+    background: url('../images/scroll.png');
+    background-size: 50vw;
+    background-repeat: no-repeat;
+    z-index: 2;
+    height: 97px;
+}
+
+.scroll ul {
+    margin: 100px 20%;
+}
+
+.completed {
+    color: rgb(88, 84, 70);
     text-decoration: line-through;
 }
