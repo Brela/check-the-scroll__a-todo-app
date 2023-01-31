@@ -1,1 +1,2 @@
-# check-the-scroll__a-todo-app
+npm install
+add DB_STRING to .env file
