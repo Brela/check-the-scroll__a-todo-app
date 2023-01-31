@@ -54,8 +54,8 @@ app.put('/markComplete', (request, response) => {
         upsert: false
     })
         .then(result => {
-            console.log('Marked Complete')
-            response.json('Marked Complete')
+            // console.log('Marked Complete')
+            response.json('Marked 44Complete')
         })
         .catch(error => console.error(error))
 
@@ -71,8 +71,8 @@ app.put('/markUnComplete', (request, response) => {
         upsert: false
     })
         .then(result => {
-            console.log('Marked Complete')
-            response.json('Marked Complete')
+            console.log('remove line')
+            response.json('remove 4line')
         })
         .catch(error => console.error(error))
 
