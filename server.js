@@ -1,14 +1,13 @@
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
+const PORT = 2001
 require('dotenv').config()
 
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    // this creates the collection name if not created
-    dbName = 'todo-app'
+    dbName = 'todo'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -23,8 +22,8 @@ app.use(express.json())
 
 
 app.get('/', async (request, response) => {
-    const todoItems = await db.collection('todo-list').find().toArray()
-    const itemsLeft = await db.collection('todo-list').countDocuments({ completed: false })
+    const todoItems = await db.collection('todos').find().toArray()
+    const itemsLeft = await db.collection('todos').countDocuments({ completed: false })
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -37,7 +36,7 @@ app.get('/', async (request, response) => {
 })
 
 app.post('/addTodo', (request, response) => {
-    db.collection('todo-list').insertOne({ thing: request.body.todoItem, completed: false })
+    db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false })
         .then(result => {
             console.log('Todo Added')
             response.redirect('/')
@@ -46,7 +45,7 @@ app.post('/addTodo', (request, response) => {
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('todo-list').updateOne({ thing: request.body.itemFromJS }, {
+    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
         $set: {
             completed: true
         }
@@ -63,7 +62,7 @@ app.put('/markComplete', (request, response) => {
 })
 
 app.put('/markUnComplete', (request, response) => {
-    db.collection('todo-list').updateOne({ thing: request.body.itemFromJS }, {
+    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
         $set: {
             completed: false
         }
@@ -80,7 +79,7 @@ app.put('/markUnComplete', (request, response) => {
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todo-list').deleteOne({ thing: request.body.itemFromJS })
+    db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
         .then(result => {
             console.log('Todo Deleted')
             response.json('Todo Deleted')
