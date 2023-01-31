@@ -33,6 +33,12 @@ async function deleteItem() {
     }
 }
 
+
+
+
+// where does the response.json('Marked Complete') go from the server.js??
+
+
 async function markComplete() {
     const itemText = this.parentNode.childNodes[1].innerText
     try {
