@@ -35,9 +35,6 @@ app.get('/', async (request, response) => {
     // .catch(error => console.error(error))
 })
 
-
-// the request comes from the main.js fetch
-// in .then, the response goes back to the main.js
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false })
         .then(result => {
@@ -57,8 +54,7 @@ app.put('/markComplete', (request, response) => {
         upsert: false
     })
         .then(result => {
-            console.log('line through')
-            // here, we are responding to the main.js fetch, which called us, wtih
+            console.log('line through--')
             response.json('Marked Complete')
         })
         .catch(error => console.error(error))
@@ -76,8 +72,7 @@ app.put('/markUnComplete', (request, response) => {
     })
         .then(result => {
             console.log('remove line')
-            // console.log(response)
-            response.json('Marked unComplete')
+            response.json('Marked Complete')
         })
         .catch(error => console.error(error))
 
@@ -86,8 +81,8 @@ app.put('/markUnComplete', (request, response) => {
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
         .then(result => {
-            console.log('Todo Deleted')
-            response.json('Marked Complete')
+            console.log('ToDO Deleted')
+            response.json('Todo Deleted')
         })
         .catch(error => console.error(error))
 

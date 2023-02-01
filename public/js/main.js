@@ -24,6 +24,7 @@ async function deleteItem() {
                 'itemFromJS': itemText
             })
         })
+        // this is where the response.json('Marked Complete') comes in from the server.js, but why isn't it used?
         const data = await response.json()
         // console.log(data)
         location.reload()
@@ -32,12 +33,6 @@ async function deleteItem() {
         console.log(err)
     }
 }
-
-
-
-
-// where does the response.json('Marked Complete') go from the server.js??
-
 
 async function markComplete() {
     const itemText = this.parentNode.childNodes[1].innerText
