@@ -35,6 +35,9 @@ async function deleteItem() {
 }
 
 async function markComplete() {
+    if (this.classList.contains("completed")) {
+        return;
+    }
     const itemText = this.parentNode.childNodes[1].innerText
     try {
         const response = await fetch('markComplete', {
