@@ -54,6 +54,7 @@ app.put('/markComplete', (request, response) => {
         }
     }, {
         sort: { _id: -1 },
+        // upsert - if set to true, will create that document in Mongo if it doesn't already exist
         upsert: false
     })
         .then(result => {
